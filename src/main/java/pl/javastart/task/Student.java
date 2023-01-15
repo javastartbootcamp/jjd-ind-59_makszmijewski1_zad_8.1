@@ -1,10 +1,11 @@
 package pl.javastart.task;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Student extends Person{
+public class Student extends Person {
     private int index;
-    private ArrayList<FinalGrade> finalGrades = new ArrayList<>();
+    private List<FinalGrade> finalGrades = new ArrayList<>();
 
     public Student(String firstName, String lastName, int index) {
         super(firstName, lastName);
@@ -19,11 +20,16 @@ public class Student extends Person{
         this.index = index;
     }
 
-    public ArrayList<FinalGrade> getFinalGrades() {
+    public List<FinalGrade> getFinalGrades() {
         return finalGrades;
     }
 
     public void setFinalGrades(ArrayList<FinalGrade> finalGrades) {
         this.finalGrades = finalGrades;
+    }
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName + " " + " " + index;
     }
 }

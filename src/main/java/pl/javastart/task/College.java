@@ -1,13 +1,14 @@
 package pl.javastart.task;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class College {
-    private ArrayList<Group> groups = new ArrayList<>();
-    private ArrayList<Lecturer> lecturers = new ArrayList<>();
-    private ArrayList<Student> students = new ArrayList<>();
+    private List<Group> groups = new ArrayList<>();
+    private List<Lecturer> lecturers = new ArrayList<>();
+    private List<Student> students = new ArrayList<>();
 
-    public ArrayList<Group> getGroups() {
+    public List<Group> getGroups() {
         return groups;
     }
 
@@ -15,7 +16,7 @@ public class College {
         this.groups = groups;
     }
 
-    public ArrayList<Lecturer> getLecturers() {
+    public List<Lecturer> getLecturers() {
         return lecturers;
     }
 
@@ -23,7 +24,7 @@ public class College {
         this.lecturers = lecturers;
     }
 
-    public ArrayList<Student> getStudents() {
+    public List<Student> getStudents() {
         return students;
     }
 
@@ -31,7 +32,7 @@ public class College {
         this.students = students;
     }
 
-    boolean isLecturerExist(int id) {
+    boolean doesLecturerExist(int id) {
         for (Lecturer lecturer : lecturers) {
             if (id == lecturer.getId()) {
                 return true;
@@ -40,7 +41,7 @@ public class College {
         return false;
     }
 
-    boolean isGroupExist(String code) {
+    boolean doesGroupExist(String code) {
         for (Group group : groups) {
             if (code.equals(group.getCode())) {
                 return true;
@@ -49,7 +50,7 @@ public class College {
         return false;
     }
 
-    boolean isStudentExist(int index) {
+    boolean doesStudentExist(int index) {
         for (Student student : students) {
             if (index == student.getIndex()) {
                 return true;
@@ -58,7 +59,7 @@ public class College {
         return false;
     }
 
-    boolean isStudentExistInGroup(int studentIndex, String groupCode) {
+    boolean doesStudentExistInGroup(int studentIndex, String groupCode) {
         for (Student student : findGroupByCode(groupCode).getStudents()) {
             if (studentIndex == student.getIndex()) {
                 return true;
@@ -87,7 +88,7 @@ public class College {
 
     Group findGroupByCode(String code) {
         for (Group group : groups) {
-            if (code.equals(group.getCode())) {
+            if (group.getCode().equals(code)) {
                 return group;
             }
         }
@@ -96,7 +97,7 @@ public class College {
 
     Student findStudentByIndex(int index) {
         for (Student student : students) {
-            if (index == student.getIndex()) {
+            if (student.getIndex() == index) {
                 return student;
             }
         }
@@ -104,11 +105,29 @@ public class College {
     }
 
     double findGradeByStudentIndexAndGroupCode(int index, String code) {
-        for (FinalGrade finalGrade : findStudentByIndex(index).getFinalGrades()) {
+        Student student = findStudentByIndex(index);
+        for (FinalGrade finalGrade : student.getFinalGrades()) {
             if (code.equals(finalGrade.getGroupCode())) {
                 return finalGrade.getGrade();
             }
         }
         return 0;
+    }
+
+    public void addLecturer(Lecturer lecturer) {
+        lecturers.add(lecturer);
+    }
+
+    public void addGroup(Group group) {
+        groups.add(group);
+    }
+
+    public boolean isStudentInGroup(int studentIndex, String groupCode) {
+        for (Student student : findGroupByCode(groupCode).getStudents()) {
+            if (studentIndex == student.getIndex()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

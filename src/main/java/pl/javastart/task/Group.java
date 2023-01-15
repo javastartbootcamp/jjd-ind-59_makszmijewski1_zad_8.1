@@ -1,17 +1,18 @@
 package pl.javastart.task;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Group {
     private String code;
     private String name;
-    private int lecturerID;
-    private ArrayList<Student> students = new ArrayList<>();
+    private int lecturerId;
+    private List<Student> students = new ArrayList<>();
 
-    public Group(String code, String name, int lecturerID) {
+    public Group(String code, String name, int lecturerId) {
         this.code = code;
         this.name = name;
-        this.lecturerID = lecturerID;
+        this.lecturerId = lecturerId;
     }
 
     public String getCode() {
@@ -30,19 +31,20 @@ public class Group {
         this.name = name;
     }
 
-    public int getLecturerID() {
-        return lecturerID;
+    public int getLecturerId() {
+        return lecturerId;
     }
 
-    public void setLecturerID(int lecturerID) {
-        this.lecturerID = lecturerID;
+    public void setLecturerId(int lecturerId) {
+        this.lecturerId = lecturerId;
     }
 
-    public ArrayList<Student> getStudents() {
+    public List<Student> getStudents() {
         return students;
     }
 
     public void setStudents(ArrayList<Student> students) {
         this.students = students;
     }
+
 }
